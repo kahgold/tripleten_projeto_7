@@ -51,3 +51,60 @@
        - What **metrics** do you focus on?
        - **Why**?
        - What **conclusions** do you make after finding the values of those metrics?
+
+**Data dictionary**
+**The visits table (server logs with data on website access):**
+- `Uid` — Unique user identifier
+- `Device` — User's device
+- `Start Ts` — Session start date and time
+- `End Ts` — Session end date and time
+- `Source Id` — The ID of the advertising source, the source with which the user comes to the website
+
+**The orders table (order data):**
+- `Uid` — Unique identifier of the user placing an order
+- `Buy Ts` — Order date and time
+- `Revenue` — Y.Afisha's revenue with order
+
+**The costs table (data on marketing expenses):**
+- `source_id` — Ad source identifier
+- `dt` — Date
+- `costs` — Expenses for this ad source on this day
+
+**Conclusion**
+**Overview do dataframe df_visits:**
+- *The dataframe contains five columns `device`, `end_ts`, `source_id`, `start_ts` and `user_id` with 50415 rows each and each of type object, int64, object, or uint64. A few of the column names have been changed, and the data type of the `end_ts` and `start_ts` columns has been changed from object to datetime. The dataframe shows no significant difference between mean and median, and no duplicate or missing data.*
+
+**Overview do dataframe df_orders:**
+- *The dataframe contains three columns, `user_id`, `revenue`, and `orders_ts`, with 50415 rows each. The columns have been changed from `buy ts` to `orders_ts`, and the data type of `orders_ts` was changed from object to datetime. And no duplicate or missing data.*
+
+**Overview do dataframe df_costs:**
+- *The dataframe contains three columns, `source_id`, `dt`, and `costs`, with 2542 rows each. The columns have been changed from `dt` to `date`, the data type of `date` changed from object to datetime, and there are no duplicate or missing data.*
+
+*On **product analysis**, we answer the question asked by calculating these following metrics.*
+- **Active User**
+    - Daily: 907 users
+    - Weekly: 5,825 users
+    - Monthly: 23,228 users
+- **Session per Day**: 987 sessions
+- **Session Length**:
+    - Average: 10 minutes
+    - Mode: 60 seconds
+- **Sticky Factor**:
+    - Weekly: 15.59%
+    - Monthly: 3.91%
+
+On **sales analysis**, we answer the question asked by calculating these following metrics.
+
+- **Lead time** - Time taken from the first session start to a final decision to purchase product
+    - Average: 4 hours and 44 minutes
+    - Median: 20 minutes
+    - Max: 24 hours
+- **Cohort Analysis**
+    - Order count: The significant drop after the first month for each cohort show a majority of users are not making repeat purchases.
+    - Average revenue per user: This analysis shows that the buyer who decided to make a repeat purchase, order in higher volume then their first order.
+    - Lifetime Value: Each cohort starts with almost similar LTV, experience drop in average revenue per buyer the following month and cumulatively continues to increase in value.
+
+***After conducting product, sales, and marketing analysis. We recommend marketing department to:***
+- *Invest **more** money on **ad source** that have **low customer aqcuisition cost** such as ad source 2, 3, and 4*;
+- *Start investing on **high visitor ad source** that have not been invested (ad source 9, and 10)*;
+- *Invest **less** on ad source with **high customer acquisition cost** such as ad source 6*.
